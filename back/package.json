@@ -1,0 +1,21 @@
+{
+    "name": "api_aluno",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "app.js",
+    "scripts": {
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js",
+        "prisma:generate": "prisma generate",
+        "prisma:migrate": "prisma migrate dev"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "prisma": "^3.0.0",
+        "@prisma/client": "^3.0.0",
+        "mysql2": "^2.2.5"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.12"
+    }
+}
