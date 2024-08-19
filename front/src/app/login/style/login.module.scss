@@ -1,0 +1,27 @@
+.login {
+  $ifam-color: #547467;
+
+  .body {
+    background: rgb(216, 237, 232);
+    background: linear-gradient(
+      140deg,
+      rgba(216, 237, 232, 1) 13%,
+      rgba(138, 182, 170, 1) 44%,
+      rgba(138, 182, 170, 1) 52%,
+      rgba(174, 195, 164, 1) 79%,
+      rgba(215, 229, 208, 1) 92%
+    );
+  }
+
+  .btnGreen {
+    background-color: $ifam-color;
+  }
+
+  .btnGreen:hover {
+    background-color: rgb(77, 77, 214);
+  }
+
+  em {
+    display: inline-block;
+  }
+}
