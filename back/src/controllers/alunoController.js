@@ -39,6 +39,7 @@ class AlunoController {
       }
       res.json(aluno);
     } catch (error) {
+      console.error(`Error updating aluno: ${error.message}`); // Log the error
       res.status(500).json({ error: error.message });
     }
   }

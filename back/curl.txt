@@ -13,3 +13,7 @@ curl -X PUT http://localhost:3000/api/alunos/1 -H "Content-Type: application/jso
 
 Exclusão de um Aluno
 curl -X DELETE http://localhost:3000/api/alunos/1
+
+
+curl -X PUT http://localhost:3000/api/alunos/1 -H "Content-Type: application/json" -d '{"nome": "Caio Atualizado", "idade": 21, "matricula": "2022003497"}'
+curl -X PUT http://localhost:3000/api/alunos/1 -H "Content-Type: application/json" -d '{"nome": "Caio Atualizado", "idade": 25, "matricula": "2022003497"}'

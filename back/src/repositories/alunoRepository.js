@@ -18,10 +18,16 @@ class AlunoRepository {
   }
 
   async update(id, data) {
-    return await prisma.aluno.update({
-      where: { id: Number(id) },
-      data,
-    });
+    try {
+      const aluno = await prisma.aluno.update({
+        where: { id: Number(id) },
+        data,
+      });
+      return aluno;
+    } catch (error) {
+      console.error(`Error updating aluno in repository: ${error.message}`); // Log the error
+      throw new Error(`Error updating aluno in repository: ${error.message}`);
+    }
   }
 
   async delete(id) {

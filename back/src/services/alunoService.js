@@ -38,16 +38,20 @@ class AlunoService {
 
   async updateAluno(id, data) {
     try {
+      // Ensure idade is an integer
+      if (data.idade) {
+        data.idade = parseInt(data.idade, 10);
+      }
       const aluno = await this.alunoRepository.update(id, data);
       if (!aluno) {
         return null;
       }
       return AlunoFactory.createAlunoDTO(aluno);
     } catch (error) {
+      console.error(`Error updating aluno: ${error.message}`); // Log the error
       throw new Error(`Error updating aluno: ${error.message}`);
     }
   }
-
   async deleteAluno(id) {
     try {
       const aluno = await this.alunoRepository.delete(id);
