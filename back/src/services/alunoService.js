@@ -29,10 +29,14 @@ class AlunoService {
 
   async createAluno(data) {
     try {
+      if (data.idade) {
+        data.idade = parseInt(data.idade, 10);
+      }
       const aluno = await this.alunoRepository.create(data);
       return AlunoFactory.createAlunoDTO(aluno);
     } catch (error) {
-      throw new Error(`Error creating aluno: ${error.message}`);
+      console.error(`Error updating aluno: ${error.message}`); // Log the error
+      throw new Error(`Error updating aluno: ${error.message}`);
     }
   }
 
@@ -60,7 +64,8 @@ class AlunoService {
       }
       return aluno;
     } catch (error) {
-      throw new Error(`Error deleting aluno: ${error.message}`);
+      console.error(`Error updating aluno: ${error.message}`); // Log the error
+      throw new Error(`Error updating aluno: ${error.message}`);
     }
   }
 }

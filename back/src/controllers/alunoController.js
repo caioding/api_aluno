@@ -27,6 +27,7 @@ class AlunoController {
       const aluno = await AlunoService.createAluno(req.body);
       res.status(201).json(aluno);
     } catch (error) {
+      console.error(`Error updating aluno: ${error.message}`); // Log the error
       res.status(500).json({ error: error.message });
     }
   }
@@ -52,6 +53,7 @@ class AlunoController {
       }
       res.status(204).send();
     } catch (error) {
+      console.error(`Error updating aluno: ${error.message}`); // Log the error
       res.status(500).json({ error: error.message });
     }
   }
