@@ -10,10 +10,11 @@
         "prisma:migrate": "prisma migrate dev"
     },
     "dependencies": {
-        "express": "^4.17.1",
-        "prisma": "^3.0.0",
         "@prisma/client": "^3.0.0",
-        "mysql2": "^2.2.5"
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mysql2": "^2.2.5",
+        "prisma": "^3.0.0"
     },
     "devDependencies": {
         "nodemon": "^2.0.12"
