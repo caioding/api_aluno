@@ -6,20 +6,29 @@ class AlunoRepository {
   }
 
   async findById(id) {
-    return await prisma.aluno.findUnique({ where: { id: Number(id) } });
+    return await prisma.aluno.findUnique({
+      where: { id: Number(id) },
+    });
   }
 
   async create(data) {
-    return await prisma.aluno.create({ data });
+    return await prisma.aluno.create({
+      data,
+    });
   }
 
   async update(id, data) {
-    return await prisma.aluno.update({ where: { id: Number(id) }, data });
+    return await prisma.aluno.update({
+      where: { id: Number(id) },
+      data,
+    });
   }
 
   async delete(id) {
-    return await prisma.aluno.delete({ where: { id: Number(id) } });
+    return await prisma.aluno.delete({
+      where: { id: Number(id) },
+    });
   }
 }
 
-export default new AlunoRepository();
+export default AlunoRepository;

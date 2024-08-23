@@ -1,4 +1,3 @@
-// src/factories/alunoFactory.js
 import AlunoDTO from '../dtos/alunoDto.js';
 
 class AlunoFactory {

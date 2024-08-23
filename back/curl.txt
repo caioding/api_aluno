@@ -1,5 +1,6 @@
 Criação de um Aluno
 curl -X POST http://localhost:3000/api/alunos -H "Content-Type: application/json" -d '{"nome": "João", "idade": 20, "matricula": "12345"}'
+curl -X POST http://localhost:3000/api/alunos -H "Content-Type: application/json" -d '{"nome": "Lilian", "idade": 20, "matricula": "2022003497"}'
 
 Leitura de Todos os Alunos
 curl -X GET http://localhost:3000/api/alunos
@@ -8,9 +9,7 @@ Leitura de um Aluno por ID
 curl -X GET http://localhost:3000/api/alunos/1
 
 Atualização de um Aluno
-curl -X PUT http://localhost:3000/api/alunos/2 -H "Content-Type: application/json" -d '{"nome": "Caio Atualizado", "idade": 21, "matricula": "72345"}'
+curl -X PUT http://localhost:3000/api/alunos/1 -H "Content-Type: application/json" -d '{"nome": "Caio Atualizado", "idade": 21, "matricula": "2022003497"}'
 
 Exclusão de um Aluno
 curl -X DELETE http://localhost:3000/api/alunos/1
-
-curl -X POST http://localhost:3000/api/alunos -H "Content-Type: application/json" -d '{"nome": "Lilian", "idade": 20, "matricula": "2022003497"}'
