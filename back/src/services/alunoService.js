@@ -11,6 +11,7 @@ class AlunoService {
       const alunos = await this.alunoRepository.findAll();
       return alunos.map(aluno => AlunoFactory.createAlunoDTO(aluno));
     } catch (error) {
+      console.error(`Error getAllAlunos aluno: ${error.message}`); // Log the error
       throw new Error(`Error fetching all alunos: ${error.message}`);
     }
   }
@@ -23,7 +24,8 @@ class AlunoService {
       }
       return AlunoFactory.createAlunoDTO(aluno);
     } catch (error) {
-      throw new Error(`Error fetching aluno by ID: ${error.message}`);
+      console.error(`Error getAlunoById aluno: ${error.message}`); // Log the error
+      throw new Error(`Error getAlunoById aluno by ID: ${error.message}`);
     }
   }
 
@@ -35,8 +37,8 @@ class AlunoService {
       }
       return AlunoFactory.createAlunoDTO(aluno);
     } catch (error) {
-      console.error(`Error updating aluno: ${error.message}`); // Log the error
-      throw new Error(`Error fetching aluno by matricula: ${error.message}`);
+      console.error(`Error getAlunoByMatricula aluno: ${error.message}`); // Log the error
+      throw new Error(`Error getAlunoByMatricula aluno by matricula: ${error.message}`);
     }
   }
 
@@ -48,8 +50,8 @@ class AlunoService {
       const aluno = await this.alunoRepository.create(data);
       return AlunoFactory.createAlunoDTO(aluno);
     } catch (error) {
-      console.error(`Error updating aluno: ${error.message}`); // Log the error
-      throw new Error(`Error updating aluno: ${error.message}`);
+      console.error(`Error createAluno aluno: ${error.message}`); // Log the error
+      throw new Error(`Error createAluno aluno: ${error.message}`);
     }
   }
 
@@ -77,8 +79,8 @@ class AlunoService {
       }
       return aluno;
     } catch (error) {
-      console.error(`Error updating aluno: ${error.message}`); // Log the error
-      throw new Error(`Error updating aluno: ${error.message}`);
+      console.error(`Error deleteAluno aluno: ${error.message}`); // Log the error
+      throw new Error(`Error deleteAluno aluno: ${error.message}`);
     }
   }
 }
