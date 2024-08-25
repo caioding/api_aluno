@@ -44,3 +44,27 @@ Navegue até a pasta front e abra o arquivo index.html diretamente no navegador.
 Use uma extensão do VS Code como "Live Server" para rodar o arquivo index.html.
 
 http://127.0.0.1:5500/front/index.html
+
+## Design Patterns
+
+### 1. Creational Design Patterns (Criação)
+#### Factory Method
+O projeto utiliza o padrão Factory Method na classe AlunoFactory, que cria instâncias de AlunoDTO.
+### 2. Structural Design Patterns (Estrutura)
+#### Proxy
+O padrão Proxy é implementado na classe AlunoProxy, que atua como intermediário para chamadas ao serviço AlunoService.
+### 3. Padrões arquiteturais
+#### Model View Controller (MVC)
+Model: A classe Aluno representa o modelo de dados.
+Controller: A classe AlunoController gerencia as requisições HTTP e interage com o serviço AlunoService.
+### 4. Outros Design Patterns
+#### Dependency Injection
+A classe DependencyInjector injeta dependências, como AlunoService e AlunoRepository.
+#### Inversion of Control
+O projeto segue o princípio de Inversão de Controle ao utilizar a classe DependencyInjector para gerenciar dependências.
+#### Entity
+A classe Aluno representa a entidade Aluno.
+#### Data Transfer Object (DTO)
+A classe AlunoDTO é usada para transferir dados entre camadas.
+#### Repository
+A classe AlunoRepository implementa o padrão Repository para acessar os dados no banco de dados.
