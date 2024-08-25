@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/alunos', AlunoController.getAll);
 router.get('/alunos/:id', AlunoController.getById);
+router.get('/alunos/matricula/:matricula', AlunoController.getByMatricula); // Nova rota
 router.post('/alunos', AlunoController.create);
 router.put('/alunos/:id', AlunoController.update);
 router.delete('/alunos/:id', AlunoController.delete);

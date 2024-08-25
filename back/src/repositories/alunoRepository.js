@@ -8,7 +8,19 @@ class AlunoRepository {
   async findById(id) {
     return await prisma.aluno.findUnique({
       where: { id: Number(id) },
-    });
+    })
+  }
+
+  async findByMatricula(matricula) {
+    try {
+      const aluno = await prisma.aluno.findUnique({
+        where: { matricula: matricula },
+      });
+      return aluno;
+    } catch (error) {
+      console.error(`Error fetching aluno by matricula: ${error.message}`); // Log the error
+      throw new Error(`Error fetching aluno by matricula: ${error.message}`);
+    }
   }
 
   async create(data) {

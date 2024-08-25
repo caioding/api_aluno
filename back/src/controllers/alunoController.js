@@ -22,6 +22,18 @@ class AlunoController {
     }
   }
 
+  async getByMatricula(req, res) { // Novo método
+    try {
+      const aluno = await AlunoService.getAlunoByMatricula(req.params.matricula);
+      if (!aluno) {
+        return res.status(404).json({ error: 'Aluno not found' });
+      }
+      res.json(aluno);
+    } catch (error) {
+      res.status(500).json({ error: `Error fetching aluno by matricula: ${error.message}` });
+    }
+  }
+
   async create(req, res) {
     try {
       const aluno = await AlunoService.createAluno(req.body);

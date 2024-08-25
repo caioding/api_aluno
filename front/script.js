@@ -3,6 +3,9 @@ const apiUrl = 'http://localhost:3000/api/alunos';
 document.addEventListener('DOMContentLoaded', () => {
     const alunoForm = document.getElementById('alunoForm');
     const alunoTable = document.getElementById('alunoTable').getElementsByTagName('tbody')[0];
+    const searchButton = document.getElementById('searchButton');
+    const searchMatricula = document.getElementById('searchMatricula');
+    const listAllButton = document.getElementById('listAllButton'); // Adicionado
 
     alunoForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -23,6 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAlunos();
     });
 
+    searchButton.addEventListener('click', async () => {
+        const matricula = searchMatricula.value;
+        if (matricula) {
+            await searchAlunoByMatricula(matricula);
+        }
+    });
+
+    listAllButton.addEventListener('click', async () => { // Adicionado
+        await loadAlunos();
+    });
+
     async function loadAlunos() {
         const response = await fetch(apiUrl);
         const alunos = await response.json();
@@ -33,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             row.insertCell(1).textContent = aluno.nome;
             row.insertCell(2).textContent = aluno.idade;
             row.insertCell(3).textContent = aluno.matricula;
-            const actionsCell = row.insertCell(4);
+            row.insertCell(4).textContent = aluno.email;
+            const actionsCell = row.insertCell(5);
             const editButton = document.createElement('button');
             editButton.textContent = 'Editar';
             editButton.onclick = () => editAluno(aluno);
@@ -70,6 +85,29 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'DELETE'
         });
         loadAlunos();
+    }
+
+    async function searchAlunoByMatricula(matricula) {
+        const response = await fetch(`${apiUrl}/matricula/${matricula}`);
+        const aluno = await response.json();
+        alunoTable.innerHTML = '';
+        if (aluno) {
+            const row = alunoTable.insertRow();
+            row.insertCell(0).textContent = aluno.id;
+            row.insertCell(1).textContent = aluno.nome;
+            row.insertCell(2).textContent = aluno.idade;
+            row.insertCell(3).textContent = aluno.matricula;
+            row.insertCell(4).textContent = aluno.email;
+            const actionsCell = row.insertCell(5);
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Editar';
+            editButton.onclick = () => editAluno(aluno);
+            actionsCell.appendChild(editButton);
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Excluir';
+            deleteButton.onclick = () => deleteAluno(aluno.id);
+            actionsCell.appendChild(deleteButton);
+        }
     }
 
     function editAluno(aluno) {

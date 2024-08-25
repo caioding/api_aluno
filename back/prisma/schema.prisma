@@ -11,5 +11,5 @@ model Aluno {
   id        Int    @id @default(autoincrement())
   nome      String
   idade     Int
-  matricula String
+  matricula String @unique
 }

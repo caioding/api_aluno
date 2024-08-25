@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD de Alunos</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>CRUD de Alunos</h1>
     <form id="alunoForm">
@@ -18,6 +20,13 @@
         <input type="text" id="matricula" required>
         <button type="submit">Salvar</button>
     </form>
+
+    <label for="searchMatricula">Pesquisar por Matrícula:</label>
+    <input type="text" id="searchMatricula">
+    <button id="searchButton">Pesquisar</button>
+
+    <button id="listAllButton">Listar Todos os Alunos</button>
+
     <table id="alunoTable">
         <thead>
             <tr>
@@ -25,6 +34,7 @@
                 <th>Nome</th>
                 <th>Idade</th>
                 <th>Matrícula</th>
+                <th>E-mail</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -34,4 +44,5 @@
     </table>
     <script src="script.js"></script>
 </body>
+
 </html>

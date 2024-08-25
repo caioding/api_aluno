@@ -27,6 +27,19 @@ class AlunoService {
     }
   }
 
+  async getAlunoByMatricula(matricula) { // Novo método
+    try {
+      const aluno = await this.alunoRepository.findByMatricula(matricula);
+      if (!aluno) {
+        return null;
+      }
+      return AlunoFactory.createAlunoDTO(aluno);
+    } catch (error) {
+      console.error(`Error updating aluno: ${error.message}`); // Log the error
+      throw new Error(`Error fetching aluno by matricula: ${error.message}`);
+    }
+  }
+
   async createAluno(data) {
     try {
       if (data.idade) {
