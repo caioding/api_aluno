@@ -61,10 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const actionsCell = row.insertCell(5);
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Editar';
+                editButton.className = 'btn-edit'; // Adiciona a classe btn-edit
                 editButton.onclick = () => editAluno(aluno);
                 actionsCell.appendChild(editButton);
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Excluir';
+                deleteButton.className = 'btn-delete'; // Adiciona a classe btn-delete
                 deleteButton.onclick = () => deleteAluno(aluno.id);
                 actionsCell.appendChild(deleteButton);
             });
@@ -130,10 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const actionsCell = row.insertCell(5);
             const editButton = document.createElement('button');
             editButton.textContent = 'Editar';
+            editButton.className = 'btn-edit'; // Adiciona a classe btn-edit
             editButton.onclick = () => editAluno(aluno);
             actionsCell.appendChild(editButton);
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Excluir';
+            deleteButton.className = 'btn-delete'; // Adiciona a classe btn-delete
             deleteButton.onclick = () => deleteAluno(aluno.id);
             actionsCell.appendChild(deleteButton);
         }
