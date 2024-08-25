@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchMatricula = document.getElementById('searchMatricula');
     const listAllButton = document.getElementById('listAllButton'); // Adicionado
+    const addAlunoButton = document.getElementById('addAlunoButton'); // Novo botão
+    const errorMessage = document.getElementById('errorMessage'); // Novo elemento
 
     alunoForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         alunoForm.reset();
+        alunoForm.style.display = 'none'; // Esconde o formulário após salvar
         loadAlunos();
     });
 
@@ -36,6 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     listAllButton.addEventListener('click', async () => { // Adicionado
         await loadAlunos();
+    });
+
+    addAlunoButton.addEventListener('click', () => {
+        document.getElementById('alunoForm').style.display = 'block';
+        document.getElementById('alunoForm').reset(); // Reseta o formulário para adicionar um novo aluno
     });
 
     async function loadAlunos() {
@@ -65,15 +73,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     async function createAluno(aluno) {
-        await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(aluno)
-        });
-    }
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(aluno)
+            });
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error);
+            }
+
+            errorMessage.style.display = 'none'; // Esconde a mensagem de erro se a criação for bem-sucedida
+        } catch (error) {
+            // errorMessage.textContent = `Erro ao criar aluno: ${error.message}`;
+            errorMessage.style.display = 'block'; // Exibe a mensagem de erro
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+    }
+    setTimeout(() => {
+        errorMessage.style.display = 'none';
+    }, 5000);
     async function updateAluno(id, aluno) {
         await fetch(`${apiUrl}/${id}`, {
             method: 'PUT',
@@ -120,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('idade').value = aluno.idade;
         document.getElementById('matricula').value = aluno.matricula;
         document.getElementById('email').value = aluno.email;
+        document.getElementById('alunoForm').style.display = 'block'; // Exibe o formulário de edição
     }
 
     loadAlunos();

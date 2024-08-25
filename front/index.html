@@ -10,7 +10,8 @@
 
 <body>
     <h1>CRUD de Alunos</h1>
-    <form id="alunoForm">
+    <button id="addAlunoButton">Adicionar Aluno</button> <!-- Novo botão -->
+    <form id="alunoForm" style="display: none;"> <!-- Formulário escondido inicialmente -->
         <input type="hidden" id="alunoId">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" required>
@@ -23,12 +24,11 @@
         <button type="submit">Salvar</button>
     </form>
 
+    <div id="errorMessage" style="color: red; display: none;"> Matrícula já existe </div> <!-- Novo elemento para mensagem de erro -->
     <label for="searchMatricula">Pesquisar por Matrícula:</label>
     <input type="text" id="searchMatricula">
     <button id="searchButton">Pesquisar</button>
-
     <button id="listAllButton">Listar Todos os Alunos</button>
-
     <br><br>
 
     <table id="alunoTable">

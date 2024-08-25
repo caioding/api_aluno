@@ -47,6 +47,10 @@ class AlunoService {
       if (data.idade) {
         data.idade = parseInt(data.idade, 10);
       }
+      const existingAluno = await this.alunoRepository.findByMatricula(data.matricula);
+      if (existingAluno) {
+        throw new Error('Matrícula já existe');
+      }
       const aluno = await this.alunoRepository.create(data);
       return AlunoFactory.createAlunoDTO(aluno);
     } catch (error) {

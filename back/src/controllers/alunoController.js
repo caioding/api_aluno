@@ -43,6 +43,9 @@ class AlunoController {
       res.status(201).json(aluno);
     } catch (error) {
       console.error(`Error create aluno: ${error.message}`); // Log the error
+      if (error.message === 'Matrícula já existe') {
+        return res.status(400).json({ error: 'Matrícula já existe' });
+      }
       res.status(500).json({ error: error.message });
     }
   }
