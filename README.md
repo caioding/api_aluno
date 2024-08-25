@@ -15,7 +15,7 @@ cd <NOME_DO_REPOSITORIO>
 
 ### Passo 2: Configurar Banco de Dados
 
-#### O jeito correto está no arquivo .env
+O jeito correto está no arquivo .env
 ```sh
 DATABASE_URL="mysql://<USUARIO>:<SENHA>@<HOST>:<PORTA>/alunoDB"
 PORT=3000
@@ -33,7 +33,7 @@ npx prisma migrate dev
 ```
 
 ### Passo 5: Rodar o Servidor Backend
-Inicie o servidor backend (O servidor estará rodando em http://localhost:3000.):
+Inicie o servidor backend (O servidor estará rodando em http://localhost:3000):
 ```sh
 npm run dev
 ```
