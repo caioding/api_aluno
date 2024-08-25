@@ -1,7 +1,11 @@
+/* Importando uma fonte personalizada do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 /* Estilos existentes */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 20px;
+    background-color: #f8f9fa;
 }
 
 h1 {
@@ -11,26 +15,39 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.header {
+    text-align: center; /* Centraliza o conteúdo do header */
+}
+
 .header img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
 }
 
 form {
     margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 label {
     display: block;
     margin-top: 10px;
+    font-weight: 500;
 }
 
 input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -39,7 +56,10 @@ button {
     background-color: #4CAF50;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -50,6 +70,10 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 th,
@@ -61,6 +85,7 @@ td {
 
 th {
     background-color: #f2f2f2;
+    font-weight: 500;
 }
 
 /* Novos estilos */
@@ -79,6 +104,9 @@ th {
     padding: 5px 10px;
     cursor: pointer;
     margin-right: 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
 .btn-edit:hover {
@@ -91,8 +119,16 @@ th {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
 .btn-delete:hover {
     background-color: #c82333;
+}
+
+.alert {
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
