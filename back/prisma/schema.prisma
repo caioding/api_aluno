@@ -12,4 +12,5 @@ model Aluno {
   nome      String
   idade     Int
   matricula String @unique
+  email     String
 }

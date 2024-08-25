@@ -21,7 +21,7 @@ app.put('/api/alunos/:id', async (req, res) => {
     const aluno = req.body;
 
     // Validate the data
-    if (!aluno.nome || !aluno.idade || !aluno.matricula) {
+    if (!aluno.nome || !aluno.idade || !aluno.matricula || !aluno.email) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 

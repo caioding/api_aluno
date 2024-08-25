@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const nome = document.getElementById('nome').value;
         const idade = document.getElementById('idade').value;
         const matricula = document.getElementById('matricula').value;
+        const email = document.getElementById('email').value;
 
-        const aluno = { nome, idade, matricula };
+        const aluno = { nome, idade, matricula, email };
 
         if (id) {
             await updateAluno(id, aluno);
@@ -38,28 +39,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function loadAlunos() {
-        const response = await fetch(apiUrl);
-        const alunos = await response.json();
-        alunoTable.innerHTML = '';
-        alunos.forEach(aluno => {
-            const row = alunoTable.insertRow();
-            row.insertCell(0).textContent = aluno.id;
-            row.insertCell(1).textContent = aluno.nome;
-            row.insertCell(2).textContent = aluno.idade;
-            row.insertCell(3).textContent = aluno.matricula;
-            row.insertCell(4).textContent = aluno.email;
-            const actionsCell = row.insertCell(5);
-            const editButton = document.createElement('button');
-            editButton.textContent = 'Editar';
-            editButton.onclick = () => editAluno(aluno);
-            actionsCell.appendChild(editButton);
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Excluir';
-            deleteButton.onclick = () => deleteAluno(aluno.id);
-            actionsCell.appendChild(deleteButton);
-        });
+        try {
+            const response = await fetch(apiUrl);
+            const alunos = await response.json();
+            alunoTable.innerHTML = '';
+            alunos.forEach(aluno => {
+                const row = alunoTable.insertRow();
+                row.insertCell(0).textContent = aluno.id;
+                row.insertCell(1).textContent = aluno.nome;
+                row.insertCell(2).textContent = aluno.idade;
+                row.insertCell(3).textContent = aluno.matricula;
+                row.insertCell(4).textContent = aluno.email;
+                const actionsCell = row.insertCell(5);
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Editar';
+                editButton.onclick = () => editAluno(aluno);
+                actionsCell.appendChild(editButton);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Excluir';
+                deleteButton.onclick = () => deleteAluno(aluno.id);
+                actionsCell.appendChild(deleteButton);
+            });
+        } catch (error) {
+            console.error(`Error loading alunos: ${error.message}`);
+        }
     }
-
     async function createAluno(aluno) {
         await fetch(apiUrl, {
             method: 'POST',
@@ -115,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('nome').value = aluno.nome;
         document.getElementById('idade').value = aluno.idade;
         document.getElementById('matricula').value = aluno.matricula;
+        document.getElementById('email').value = aluno.email;
     }
 
     loadAlunos();
