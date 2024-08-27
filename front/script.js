@@ -5,9 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const alunoTable = document.getElementById('alunoTable').getElementsByTagName('tbody')[0];
     const searchButton = document.getElementById('searchButton');
     const searchMatricula = document.getElementById('searchMatricula');
-    const listAllButton = document.getElementById('listAllButton'); // Adicionado
-    const addAlunoButton = document.getElementById('addAlunoButton'); // Novo botão
-    const errorMessage = document.getElementById('errorMessage'); // Novo elemento
+    const listAllButton = document.getElementById('listAllButton');
+    const addAlunoButton = document.getElementById('addAlunoButton');
+    const cancelButton = document.getElementById('cancelButton');
+    const errorMessage = document.getElementById('errorMessage');
 
     alunoForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         alunoForm.reset();
-        alunoForm.style.display = 'none'; // Esconde o formulário após salvar
+        alunoForm.style.display = 'none';
         loadAlunos();
     });
 
@@ -37,13 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    listAllButton.addEventListener('click', async () => { // Adicionado
+    listAllButton.addEventListener('click', async () => {
         await loadAlunos();
     });
 
     addAlunoButton.addEventListener('click', () => {
         document.getElementById('alunoForm').style.display = 'block';
         document.getElementById('alunoForm').reset(); // Reseta o formulário para adicionar um novo aluno
+    });
+
+    cancelButton.addEventListener('click', () => {
+        alunoForm.reset();
+        alunoForm.style.display = 'none';
     });
 
     async function loadAlunos() {
@@ -61,12 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const actionsCell = row.insertCell(5);
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Editar';
-                editButton.className = 'btn-edit'; // Adiciona a classe btn-edit
+                editButton.className = 'btn-edit';
                 editButton.onclick = () => editAluno(aluno);
                 actionsCell.appendChild(editButton);
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Excluir';
-                deleteButton.className = 'btn-delete'; // Adiciona a classe btn-delete
+                deleteButton.className = 'btn-delete';
                 deleteButton.onclick = () => deleteAluno(aluno.id);
                 actionsCell.appendChild(deleteButton);
             });
@@ -132,12 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const actionsCell = row.insertCell(5);
             const editButton = document.createElement('button');
             editButton.textContent = 'Editar';
-            editButton.className = 'btn-edit'; // Adiciona a classe btn-edit
+            editButton.className = 'btn-edit';
             editButton.onclick = () => editAluno(aluno);
             actionsCell.appendChild(editButton);
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Excluir';
-            deleteButton.className = 'btn-delete'; // Adiciona a classe btn-delete
+            deleteButton.className = 'btn-delete';
             deleteButton.onclick = () => deleteAluno(aluno.id);
             actionsCell.appendChild(deleteButton);
         }
