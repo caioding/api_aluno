@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addAlunoButton.addEventListener('click', () => {
         document.getElementById('alunoForm').style.display = 'block';
         document.getElementById('alunoForm').reset(); // Reseta o formulário para adicionar um novo aluno
+        document.getElementById('alunoId').value = ''; // Limpa o campo oculto de ID
     });
 
     cancelButton.addEventListener('click', () => {
