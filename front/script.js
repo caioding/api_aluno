@@ -33,8 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchButton.addEventListener('click', async () => {
         const matricula = searchMatricula.value;
-        if (matricula) {
+        if (matricula && !isNaN(matricula)) {
             await searchAlunoByMatricula(matricula);
+        } else {
+            errorMessage.textContent = 'Por favor, insira um número válido para a matrícula.';
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
         }
     });
 
@@ -126,30 +132,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function searchAlunoByMatricula(matricula) {
-        const response = await fetch(`${apiUrl}/matricula/${matricula}`);
-        const aluno = await response.json();
-        alunoTable.innerHTML = '';
-        if (aluno) {
-            const row = alunoTable.insertRow();
-            row.insertCell(0).textContent = aluno.id;
-            row.insertCell(1).textContent = aluno.nome;
-            row.insertCell(2).textContent = aluno.idade;
-            row.insertCell(3).textContent = aluno.matricula;
-            row.insertCell(4).textContent = aluno.email;
-            const actionsCell = row.insertCell(5);
-            const editButton = document.createElement('button');
-            editButton.textContent = 'Editar';
-            editButton.className = 'btn-edit';
-            editButton.onclick = () => editAluno(aluno);
-            actionsCell.appendChild(editButton);
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Excluir';
-            deleteButton.className = 'btn-delete';
-            deleteButton.onclick = () => deleteAluno(aluno.id);
-            actionsCell.appendChild(deleteButton);
+        try {
+            const response = await fetch(`${apiUrl}/matricula/${matricula}`);
+            if (!response.ok) {
+                throw new Error('Matrícula não encontrada');
+            }
+            const aluno = await response.json();
+            alunoTable.innerHTML = '';
+            if (aluno) {
+                const row = alunoTable.insertRow();
+                row.insertCell(0).textContent = aluno.id;
+                row.insertCell(1).textContent = aluno.nome;
+                row.insertCell(2).textContent = aluno.idade;
+                row.insertCell(3).textContent = aluno.matricula;
+                row.insertCell(4).textContent = aluno.email;
+                const actionsCell = row.insertCell(5);
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Editar';
+                editButton.className = 'btn-edit';
+                editButton.onclick = () => editAluno(aluno);
+                actionsCell.appendChild(editButton);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Excluir';
+                deleteButton.className = 'btn-delete';
+                deleteButton.onclick = () => deleteAluno(aluno.id);
+                actionsCell.appendChild(deleteButton);
+            }
+        } catch (error) {
+            errorMessage.textContent = error.message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
         }
     }
-
     function editAluno(aluno) {
         document.getElementById('alunoId').value = aluno.id;
         document.getElementById('nome').value = aluno.nome;
