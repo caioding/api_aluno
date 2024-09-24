@@ -26,7 +26,7 @@ Navegue até a pasta back e instale as dependências do projeto:
 cd back
 npm install
 ```
-### Passo 4: Configurar o PriSe o migrate não estiver no diretório quando der o clone, executar:
+### Passo 4: Configurar o Prisma o migrate não estiver no diretório quando der o clone, executar:
 ```sh
 npx prisma generate
 npx prisma migrate dev
